@@ -1,0 +1,41 @@
+
+<div class="container">
+
+  <mat-card class="recipe-card" [ngStyle]="{ 'border-top-color': getMealTypeColor(recipe?.mealType) }">
+    <mat-card-header>
+      <div mat-card-avatar class="meal-type-avatar" [ngStyle]="{ 'background-color': getMealTypeColor(recipe?.mealType) }"></div>
+      <mat-card-title>{{ recipe?.name }}</mat-card-title>
+      <mat-card-subtitle>{{ recipe?.mealType }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Duration:</strong> {{ recipe?.timeRequired }} minutes</p>
+      <p>{{ recipe?.description }}</p>
+
+      <div *ngIf="recipe?.ingredients && !showAllIngredients">
+        <h4>Ingredients:</h4>
+        <ul>
+          <li *ngFor="let ingredient of recipe.ingredients.slice(0, 2)">
+            {{ ingredient?.name }}: {{ ingredient?.amount }}
+          </li>
+        </ul>
+        <button *ngIf="recipe.ingredients.length > 2" mat-button color="primary" (click)="showAllIngredients = true">
+          Show All
+        </button>
+      </div>
+
+      <div *ngIf="recipe?.ingredients && showAllIngredients">
+        <h4>Ingredients:</h4>
+        <ul>
+          <li *ngFor="let ingredient of recipe.ingredients">
+            {{ ingredient?.name }}: {{ ingredient?.amount }}
+          </li>
+        </ul>
+        <button mat-button color="warn" (click)="showAllIngredients = false">Show Less</button>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="warn" (click)="deleteRecipe()">Delete</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>

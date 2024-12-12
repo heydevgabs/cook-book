@@ -1,0 +1,80 @@
+<div class="form-container">
+  <button mat-icon-button color="primary" class="back-button" (click)="navigateToRecipes()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <h1>New Recipe</h1>
+  <form (ngSubmit)="createRecipe()">
+    <div class="grid-container">
+      <!-- Recipe Name -->
+      <mat-form-field class="grid-item full-width">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="recipeName" name="name" required />
+      </mat-form-field>
+
+      <mat-form-field class="grid-item duration">
+        <mat-label>Duration (minutes)</mat-label>
+        <input matInput type="number" [(ngModel)]="recipeTimeRequired" name="timeRequired" required />
+      </mat-form-field>
+
+      <mat-form-field class="grid-item duration">
+        <mat-label>Meal Type</mat-label>
+        <mat-select [(ngModel)]="recipeMealType" name="mealType" required>
+          <mat-option value="BREAKFAST">Breakfast</mat-option>
+          <mat-option value="LUNCH">Lunch</mat-option>
+          <mat-option value="DINNER">Dinner</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="grid-item full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="recipeDescription" name="description" required></textarea>
+      </mat-form-field>
+
+      <div class="divider"></div>
+
+      <div class="ingredient-grid">
+        <h3>Ingredients:</h3>
+        <div *ngFor="let ingredient of ingredients; let i = index" class="ingredient-row">
+          <mat-form-field class="ingredient-name">
+            <mat-label>Ingredient</mat-label>
+            <input
+              matInput
+              [(ngModel)]="ingredient.name"
+              name="ingredientName{{ i }}"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field class="ingredient-amount">
+            <mat-label>Amount</mat-label>
+            <input
+              matInput
+              [(ngModel)]="ingredient.amount"
+              name="ingredientAmount{{ i }}"
+              required
+            />
+          </mat-form-field>
+
+          <button
+            mat-icon-button
+            color="warn"
+            type="button"
+            (click)="removeIngredient(i)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <div class="add-ingredient-btn">
+          <button mat-raised-button color="primary" type="button" (click)="addIngredient()">
+            Add Ingredient
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-container">
+      <button mat-raised-button color="accent" type="submit">Create Recipe</button>
+    </div>
+  </form>
+</div>

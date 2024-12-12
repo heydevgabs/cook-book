@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.recipe-card {
+  width: 300px;
+  margin: 10px;
+  transition: transform 0.2s;
+  padding-left: 20px;
+
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .meal-type-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  mat-card-content {
+    padding: 16px 0;
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+
+      li {
+        padding: 4px 0;
+        border-bottom: 1px solid #eee;
+      }
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+  }
+}
+
+
+

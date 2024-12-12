@@ -1,0 +1,27 @@
+<div class="branding-div">
+  <h1 class="title-brand">THE RECIPES BOOK</h1>
+</div>
+<div class="search-bar">
+  <mat-form-field appearance="outline" class="search-input">
+    <mat-label>Search Recipes</mat-label>
+    <input matInput [(ngModel)]="searchTerm" (keyup.enter)="searchRecipes()" placeholder="Search by name or meal type" />
+  </mat-form-field>
+  <button class="search-btn" mat-raised-button color="primary" (click)="searchRecipes()">Search</button>
+</div>
+
+<div class="tags-container">
+  <button class="tag-button breakfast" (click)="searchByMealType('BREAKFAST')">Breakfast</button>
+  <button class="tag-button lunch" (click)="searchByMealType('LUNCH')">Lunch</button>
+  <button class="tag-button dinner" (click)="searchByMealType('DINNER')">Dinner</button>
+</div>
+
+<div class="header">
+  <h1 class="custom-title">Recipes</h1>
+  <button class="create-btn" (click)="navigateToCreateRecipe()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div class="recipe-grid">
+  <app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe" (onDelete)="deleteRecipe($event)"></app-recipe-card>
+</div>
